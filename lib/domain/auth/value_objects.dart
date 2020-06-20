@@ -1,0 +1,37 @@
+import 'package:anime_search/domain/core/failures.dart';
+import 'package:anime_search/domain/core/value_objects.dart';
+import 'package:anime_search/domain/core/value_validators.dart';
+import 'package:dartz/dartz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+class EmailAddress extends ValueObject<String> {
+  final Either<ValueFailure<String>, String> value;
+
+  factory EmailAddress(String input) {
+    assert(input != null);
+    return EmailAddress._(
+      validateEmailAddresss(input),
+    );
+  }
+
+  EmailAddress._(this.value);
+}
+
+class Password extends ValueObject<String> {
+  final Either<ValueFailure<String>, String> value;
+
+  factory Password(String input) {
+    assert(input != null);
+    return Password._(
+      validatePassword(input),
+    );
+  }
+
+  Password._(this.value);
+}
+
+class InvalidEmailException implements Exception {
+  final String failedValue;
+
+  InvalidEmailException({@required this.failedValue});
+}
