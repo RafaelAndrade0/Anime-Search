@@ -39,12 +39,12 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         );
       },
       registerWithEmailAndPasswordPressed: (e) async* {
-        _peformActionWithEmailAndPassword(
+        yield* _peformActionWithEmailAndPassword(
           _authFacade.registerWithEmailAndPassword,
         );
       },
       signInWithEmailAndPasswordPressed: (e) async* {
-        _peformActionWithEmailAndPassword(
+        yield* _peformActionWithEmailAndPassword(
           _authFacade.signInWithEmailAndPassword,
         );
       },
