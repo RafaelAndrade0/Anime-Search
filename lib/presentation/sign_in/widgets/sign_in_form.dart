@@ -116,6 +116,7 @@ class SignInForm extends StatelessWidget {
                 ],
               ),
               GoogleSignInButton(
+                text: 'Log in with google',
                 onPressed: () {},
                 darkMode: true,
               ),
