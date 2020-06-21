@@ -1,6 +1,5 @@
 import 'package:anime_search/domain/auth/auth_failure.dart';
 import 'package:anime_search/domain/auth/value_objects.dart';
-import 'package:anime_search/domain/core/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 
