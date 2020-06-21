@@ -1,6 +1,7 @@
 import 'package:anime_search/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignInForm extends StatelessWidget {
@@ -40,7 +41,7 @@ class SignInForm extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             children: <Widget>[
               Container(
-                height: 350,
+                height: 320,
                 child: Image.asset(
                   'assets/images/logo.png',
                   fit: BoxFit.fitHeight,
@@ -113,6 +114,10 @@ class SignInForm extends StatelessWidget {
                     ),
                   )
                 ],
+              ),
+              GoogleSignInButton(
+                onPressed: () {},
+                darkMode: true,
               ),
               const Text(
                 'By Using Anime Search you are agreeing to our terms & Privacy Policy. And you confirm that you are at least 18 years or age.',
