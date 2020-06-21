@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 class EmailAddress extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
 
   factory EmailAddress(String input) {
@@ -14,10 +15,11 @@ class EmailAddress extends ValueObject<String> {
     );
   }
 
-  EmailAddress._(this.value);
+  const EmailAddress._(this.value);
 }
 
 class Password extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
 
   factory Password(String input) {
@@ -27,7 +29,7 @@ class Password extends ValueObject<String> {
     );
   }
 
-  Password._(this.value);
+  const Password._(this.value);
 }
 
 class InvalidEmailException implements Exception {

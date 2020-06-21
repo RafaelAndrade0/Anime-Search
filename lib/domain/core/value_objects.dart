@@ -9,6 +9,11 @@ abstract class ValueObject<T> {
 
   bool get isValid => value.isRight();
 
+  /// Throws [UnexpectedValueError] containing the [ValueFailure]
+  T getOrCrash() {
+    return value.fold((l) => throw Error(), (r) => r);
+  }
+
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
