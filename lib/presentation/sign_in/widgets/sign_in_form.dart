@@ -1,4 +1,5 @@
 import 'package:anime_search/application/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,7 +7,32 @@ class SignInForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        state.authFailureOrSuccessOption.fold(
+          () {},
+          (some) => some.fold((failure) {
+            Flushbar(
+              margin: const EdgeInsets.all(8),
+              borderRadius: 8,
+              message: failure.map(
+                cancelledByUser: (_) => 'Cancelled',
+                serverError: (_) => 'Server Error',
+                emailAlreadyInUse: (_) => 'Email already in use',
+                invalidEmailAndPasswordCombination: (_) =>
+                    'Invalid email and password combination',
+              ),
+              icon: Icon(
+                Icons.info_outline,
+                size: 28.0,
+                color: Colors.red[300],
+              ),
+              duration: const Duration(seconds: 4),
+            ).show(context);
+          }, (r) {
+            // Navigate
+          }),
+        );
+      },
       builder: (context, state) {
         return Form(
           autovalidate: state.showErrorMessages,
