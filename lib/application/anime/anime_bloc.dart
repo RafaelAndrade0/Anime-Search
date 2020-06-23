@@ -17,6 +17,10 @@ class AnimeBloc extends Bloc<AnimeEvent, AnimeState> {
   Stream<AnimeState> mapEventToState(
     AnimeEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    yield* event.map(
+      getMostPopularAnimes: (e) async* {},
+      getAnime: (e) async* {},
+      getAnimeDetais: (e) async* {},
+    );
   }
 }
