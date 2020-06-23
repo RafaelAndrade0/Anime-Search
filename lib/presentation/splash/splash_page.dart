@@ -13,6 +13,7 @@ class SplashPage extends StatelessWidget {
           initial: (_) {},
           authenticated: (_) {
             // Redirect to home
+            ExtendedNavigator.of(context).pushReplacementNamed(Routes.homepage);
           },
           unauthenticated: (_) {
             ExtendedNavigator.of(context)
