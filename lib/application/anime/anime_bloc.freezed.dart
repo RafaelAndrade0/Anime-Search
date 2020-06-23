@@ -16,8 +16,10 @@ class _$AnimeEventTearOff {
     return const GetMostPopularAnimes();
   }
 
-  GetAnime getAnime() {
-    return const GetAnime();
+  GetAnime getAnime(String animeTitle) {
+    return GetAnime(
+      animeTitle,
+    );
   }
 
   GetAnimeDetails getAnimeDetais() {
@@ -32,13 +34,13 @@ mixin _$AnimeEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result getMostPopularAnimes(),
-    @required Result getAnime(),
+    @required Result getAnime(String animeTitle),
     @required Result getAnimeDetais(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result getMostPopularAnimes(),
-    Result getAnime(),
+    Result getAnime(String animeTitle),
     Result getAnimeDetais(),
     @required Result orElse(),
   });
@@ -108,7 +110,7 @@ class _$GetMostPopularAnimes implements GetMostPopularAnimes {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result getMostPopularAnimes(),
-    @required Result getAnime(),
+    @required Result getAnime(String animeTitle),
     @required Result getAnimeDetais(),
   }) {
     assert(getMostPopularAnimes != null);
@@ -121,7 +123,7 @@ class _$GetMostPopularAnimes implements GetMostPopularAnimes {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result getMostPopularAnimes(),
-    Result getAnime(),
+    Result getAnime(String animeTitle),
     Result getAnimeDetais(),
     @required Result orElse(),
   }) {
@@ -168,6 +170,7 @@ abstract class GetMostPopularAnimes implements AnimeEvent {
 abstract class $GetAnimeCopyWith<$Res> {
   factory $GetAnimeCopyWith(GetAnime value, $Res Function(GetAnime) then) =
       _$GetAnimeCopyWithImpl<$Res>;
+  $Res call({String animeTitle});
 }
 
 class _$GetAnimeCopyWithImpl<$Res> extends _$AnimeEventCopyWithImpl<$Res>
@@ -177,48 +180,69 @@ class _$GetAnimeCopyWithImpl<$Res> extends _$AnimeEventCopyWithImpl<$Res>
 
   @override
   GetAnime get _value => super._value as GetAnime;
+
+  @override
+  $Res call({
+    Object animeTitle = freezed,
+  }) {
+    return _then(GetAnime(
+      animeTitle == freezed ? _value.animeTitle : animeTitle as String,
+    ));
+  }
 }
 
 class _$GetAnime implements GetAnime {
-  const _$GetAnime();
+  const _$GetAnime(this.animeTitle) : assert(animeTitle != null);
+
+  @override
+  final String animeTitle;
 
   @override
   String toString() {
-    return 'AnimeEvent.getAnime()';
+    return 'AnimeEvent.getAnime(animeTitle: $animeTitle)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GetAnime);
+    return identical(this, other) ||
+        (other is GetAnime &&
+            (identical(other.animeTitle, animeTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.animeTitle, animeTitle)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(animeTitle);
+
+  @override
+  $GetAnimeCopyWith<GetAnime> get copyWith =>
+      _$GetAnimeCopyWithImpl<GetAnime>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result getMostPopularAnimes(),
-    @required Result getAnime(),
+    @required Result getAnime(String animeTitle),
     @required Result getAnimeDetais(),
   }) {
     assert(getMostPopularAnimes != null);
     assert(getAnime != null);
     assert(getAnimeDetais != null);
-    return getAnime();
+    return getAnime(animeTitle);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result getMostPopularAnimes(),
-    Result getAnime(),
+    Result getAnime(String animeTitle),
     Result getAnimeDetais(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (getAnime != null) {
-      return getAnime();
+      return getAnime(animeTitle);
     }
     return orElse();
   }
@@ -253,7 +277,10 @@ class _$GetAnime implements GetAnime {
 }
 
 abstract class GetAnime implements AnimeEvent {
-  const factory GetAnime() = _$GetAnime;
+  const factory GetAnime(String animeTitle) = _$GetAnime;
+
+  String get animeTitle;
+  $GetAnimeCopyWith<GetAnime> get copyWith;
 }
 
 abstract class $GetAnimeDetailsCopyWith<$Res> {
@@ -292,7 +319,7 @@ class _$GetAnimeDetails implements GetAnimeDetails {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result getMostPopularAnimes(),
-    @required Result getAnime(),
+    @required Result getAnime(String animeTitle),
     @required Result getAnimeDetais(),
   }) {
     assert(getMostPopularAnimes != null);
@@ -305,7 +332,7 @@ class _$GetAnimeDetails implements GetAnimeDetails {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result getMostPopularAnimes(),
-    Result getAnime(),
+    Result getAnime(String animeTitle),
     Result getAnimeDetais(),
     @required Result orElse(),
   }) {
@@ -356,8 +383,10 @@ class _$AnimeStateTearOff {
     return const AnimeLoading();
   }
 
-  AnimeLoaded animeLoaded() {
-    return const AnimeLoaded();
+  AnimeLoaded animeLoaded(KtList<Anime> animeList) {
+    return AnimeLoaded(
+      animeList,
+    );
   }
 
   AnimeError animeError() {
@@ -376,14 +405,14 @@ mixin _$AnimeState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result animeLoading(),
-    @required Result animeLoaded(),
+    @required Result animeLoaded(KtList<Anime> animeList),
     @required Result animeError(),
     @required Result animeInitial(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result animeLoading(),
-    Result animeLoaded(),
+    Result animeLoaded(KtList<Anime> animeList),
     Result animeError(),
     Result animeInitial(),
     @required Result orElse(),
@@ -455,7 +484,7 @@ class _$AnimeLoading implements AnimeLoading {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result animeLoading(),
-    @required Result animeLoaded(),
+    @required Result animeLoaded(KtList<Anime> animeList),
     @required Result animeError(),
     @required Result animeInitial(),
   }) {
@@ -470,7 +499,7 @@ class _$AnimeLoading implements AnimeLoading {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result animeLoading(),
-    Result animeLoaded(),
+    Result animeLoaded(KtList<Anime> animeList),
     Result animeError(),
     Result animeInitial(),
     @required Result orElse(),
@@ -522,6 +551,7 @@ abstract class $AnimeLoadedCopyWith<$Res> {
   factory $AnimeLoadedCopyWith(
           AnimeLoaded value, $Res Function(AnimeLoaded) then) =
       _$AnimeLoadedCopyWithImpl<$Res>;
+  $Res call({KtList<Anime> animeList});
 }
 
 class _$AnimeLoadedCopyWithImpl<$Res> extends _$AnimeStateCopyWithImpl<$Res>
@@ -532,29 +562,50 @@ class _$AnimeLoadedCopyWithImpl<$Res> extends _$AnimeStateCopyWithImpl<$Res>
 
   @override
   AnimeLoaded get _value => super._value as AnimeLoaded;
+
+  @override
+  $Res call({
+    Object animeList = freezed,
+  }) {
+    return _then(AnimeLoaded(
+      animeList == freezed ? _value.animeList : animeList as KtList<Anime>,
+    ));
+  }
 }
 
 class _$AnimeLoaded implements AnimeLoaded {
-  const _$AnimeLoaded();
+  const _$AnimeLoaded(this.animeList) : assert(animeList != null);
+
+  @override
+  final KtList<Anime> animeList;
 
   @override
   String toString() {
-    return 'AnimeState.animeLoaded()';
+    return 'AnimeState.animeLoaded(animeList: $animeList)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AnimeLoaded);
+    return identical(this, other) ||
+        (other is AnimeLoaded &&
+            (identical(other.animeList, animeList) ||
+                const DeepCollectionEquality()
+                    .equals(other.animeList, animeList)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(animeList);
+
+  @override
+  $AnimeLoadedCopyWith<AnimeLoaded> get copyWith =>
+      _$AnimeLoadedCopyWithImpl<AnimeLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result animeLoading(),
-    @required Result animeLoaded(),
+    @required Result animeLoaded(KtList<Anime> animeList),
     @required Result animeError(),
     @required Result animeInitial(),
   }) {
@@ -562,21 +613,21 @@ class _$AnimeLoaded implements AnimeLoaded {
     assert(animeLoaded != null);
     assert(animeError != null);
     assert(animeInitial != null);
-    return animeLoaded();
+    return animeLoaded(animeList);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result animeLoading(),
-    Result animeLoaded(),
+    Result animeLoaded(KtList<Anime> animeList),
     Result animeError(),
     Result animeInitial(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (animeLoaded != null) {
-      return animeLoaded();
+      return animeLoaded(animeList);
     }
     return orElse();
   }
@@ -614,7 +665,10 @@ class _$AnimeLoaded implements AnimeLoaded {
 }
 
 abstract class AnimeLoaded implements AnimeState {
-  const factory AnimeLoaded() = _$AnimeLoaded;
+  const factory AnimeLoaded(KtList<Anime> animeList) = _$AnimeLoaded;
+
+  KtList<Anime> get animeList;
+  $AnimeLoadedCopyWith<AnimeLoaded> get copyWith;
 }
 
 abstract class $AnimeErrorCopyWith<$Res> {
@@ -652,7 +706,7 @@ class _$AnimeError implements AnimeError {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result animeLoading(),
-    @required Result animeLoaded(),
+    @required Result animeLoaded(KtList<Anime> animeList),
     @required Result animeError(),
     @required Result animeInitial(),
   }) {
@@ -667,7 +721,7 @@ class _$AnimeError implements AnimeError {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result animeLoading(),
-    Result animeLoaded(),
+    Result animeLoaded(KtList<Anime> animeList),
     Result animeError(),
     Result animeInitial(),
     @required Result orElse(),
@@ -751,7 +805,7 @@ class _$AnimeInitial implements AnimeInitial {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result animeLoading(),
-    @required Result animeLoaded(),
+    @required Result animeLoaded(KtList<Anime> animeList),
     @required Result animeError(),
     @required Result animeInitial(),
   }) {
@@ -766,7 +820,7 @@ class _$AnimeInitial implements AnimeInitial {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result animeLoading(),
-    Result animeLoaded(),
+    Result animeLoaded(KtList<Anime> animeList),
     Result animeError(),
     Result animeInitial(),
     @required Result orElse(),
