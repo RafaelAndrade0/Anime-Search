@@ -1,5 +1,7 @@
 import 'package:anime_search/domain/anime/anime.dart';
 import 'package:anime_search/presentation/home/widgets/build_anime_initial.dart';
+import 'package:anime_search/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_dart/collection.dart';
 
@@ -22,43 +24,46 @@ class _BuildAnimeLoadedState extends State<BuildAnimeLoaded> {
     );
   }
 
-  Stack buildAnimeItem(Anime anime) {
-    return Stack(
-      alignment: Alignment.center,
-      children: <Widget>[
-        Container(
-          height: 170,
-          width: 170,
-          decoration: BoxDecoration(
-            color: Colors.purple,
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-          ),
-        ),
-        Container(
-          height: 170,
-          width: 170,
-          margin: const EdgeInsets.only(right: 12),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(anime.imageUrl),
-              fit: BoxFit.cover,
+  Widget buildAnimeItem(Anime anime) {
+    return GestureDetector(
+        onTap: () =>
+            ExtendedNavigator.of(context).pushNamed(Routes.animeDetails),
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Container(
+              height: 170,
+              width: 170,
+              decoration: BoxDecoration(
+                color: Colors.purple,
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+              ),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 27.0,
-                offset: const Offset(
-                  0.0,
-                  15.0,
+            Container(
+              height: 170,
+              width: 170,
+              margin: const EdgeInsets.only(right: 12),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(anime.imageUrl),
+                  fit: BoxFit.cover,
                 ),
-              )
-            ],
-            color: Colors.white,
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-          ),
-        )
-      ],
-    );
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 27.0,
+                    offset: const Offset(
+                      0.0,
+                      15.0,
+                    ),
+                  )
+                ],
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+              ),
+            )
+          ],
+        ));
   }
 
   Expanded buildBackground() {
@@ -67,9 +72,9 @@ class _BuildAnimeLoadedState extends State<BuildAnimeLoaded> {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.only(top: 50),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(40),
                 topRight: Radius.circular(40),
               ),

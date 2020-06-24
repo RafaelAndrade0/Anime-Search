@@ -1,3 +1,4 @@
+import 'package:anime_search/presentation/anime_details/anime_details.dart';
 import 'package:anime_search/presentation/home/home_page.dart';
 import 'package:anime_search/presentation/sign_in/sign_in_page.dart';
 import 'package:anime_search/presentation/splash/splash_page.dart';
@@ -9,4 +10,5 @@ class $Router {
   SplashPage splashPage;
   SignInPage signInPage;
   Homepage homepage;
+  AnimeDetails animeDetails;
 }
