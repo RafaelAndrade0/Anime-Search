@@ -8,12 +8,20 @@ class BuildAnimeInitial extends StatelessWidget {
     return BlocBuilder<AnimeBloc, AnimeState>(
       builder: (context, state) {
         return Container(
-          padding: const EdgeInsets.all(20),
+          margin: const EdgeInsets.all(15),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.4),
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: TextField(
             onSubmitted: (value) => context
                 .bloc<AnimeBloc>()
-                .add(const AnimeEvent.getAnime('bleach')),
+                .add(const AnimeEvent.getAnime('attack on titan')),
             textInputAction: TextInputAction.search,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
             decoration: InputDecoration(
               hintText: "Enter an anime",
               suffixIcon: Icon(

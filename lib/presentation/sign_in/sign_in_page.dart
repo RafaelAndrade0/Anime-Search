@@ -8,6 +8,7 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       body: BlocProvider(
         create: (context) => getIt<SignInFormBloc>(),
         child: SignInForm(),

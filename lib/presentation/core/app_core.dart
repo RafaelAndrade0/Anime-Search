@@ -20,10 +20,13 @@ class AppCore extends StatelessWidget {
         theme: ThemeData.light().copyWith(
           primaryColor: Colors.deepPurple[800],
           inputDecorationTheme: InputDecorationTheme(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintStyle: TextStyle(color: Colors.white)
+              // border: OutlineInputBorder(
+              //   borderRadius: BorderRadius.circular(8),
+              // ),
+              ),
         ),
         // home: SignInPage(),
         builder: ExtendedNavigator<Router>(router: Router()),

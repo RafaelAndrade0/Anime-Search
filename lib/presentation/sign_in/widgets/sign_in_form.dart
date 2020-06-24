@@ -52,91 +52,120 @@ class SignInForm extends StatelessWidget {
                           fit: BoxFit.fitHeight,
                         ),
                       ),
-                      TextFormField(
-                        autocorrect: false,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.email),
-                          labelText: 'Email',
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        onChanged: (value) => context
-                            .bloc<SignInFormBloc>()
-                            .add(SignInFormEvent.emailChanged(value)),
-                        validator: (_) => context
-                            .bloc<SignInFormBloc>()
-                            .state
-                            .emailAddress
-                            .value
-                            .fold(
-                                (l) => l.maybeMap(
-                                      invalidEmail: (_) => 'Invalid Email',
-                                      orElse: () => null,
-                                    ),
-                                (_) => null),
+                        child: TextFormField(
+                          autocorrect: false,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.email),
+                            labelText: 'Email',
+                          ),
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          onChanged: (value) => context
+                              .bloc<SignInFormBloc>()
+                              .add(SignInFormEvent.emailChanged(value)),
+                          validator: (_) => context
+                              .bloc<SignInFormBloc>()
+                              .state
+                              .emailAddress
+                              .value
+                              .fold(
+                                  (l) => l.maybeMap(
+                                        invalidEmail: (_) => 'Invalid Email',
+                                        orElse: () => null,
+                                      ),
+                                  (_) => null),
+                        ),
                       ),
                       const SizedBox(
                         height: 8,
                       ),
-                      TextFormField(
-                        autocorrect: false,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.lock),
-                          labelText: 'Password',
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        onChanged: (value) => context
-                            .bloc<SignInFormBloc>()
-                            .add(SignInFormEvent.passwordChanged(value)),
-                        validator: (_) => context
-                            .bloc<SignInFormBloc>()
-                            .state
-                            .password
-                            .value
-                            .fold(
-                                (l) => l.maybeMap(
-                                      shortPassword: (_) => 'Short Password',
-                                      orElse: () => null,
-                                    ),
-                                (_) => null),
+                        child: TextFormField(
+                          autocorrect: false,
+                          obscureText: true,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.lock),
+                            labelText: 'Password',
+                          ),
+                          onChanged: (value) => context
+                              .bloc<SignInFormBloc>()
+                              .add(SignInFormEvent.passwordChanged(value)),
+                          validator: (_) => context
+                              .bloc<SignInFormBloc>()
+                              .state
+                              .password
+                              .value
+                              .fold(
+                                  (l) => l.maybeMap(
+                                        shortPassword: (_) => 'Short Password',
+                                        orElse: () => null,
+                                      ),
+                                  (_) => null),
+                        ),
                       ),
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child: OutlineButton(
+                            child: FlatButton(
                               onPressed: () {
                                 context.bloc<SignInFormBloc>().add(
                                     const SignInFormEvent
                                         .signInWithEmailAndPasswordPressed());
                               },
-                              child: const Text('LOG IN'),
+                              child: const Text(
+                                'LOG IN',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ),
                           Expanded(
                             child: OutlineButton(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 width: 2,
-                                color: Colors.deepPurple,
+                                color: Colors.white,
                               ),
                               onPressed: () {
                                 context.bloc<SignInFormBloc>().add(
                                     const SignInFormEvent
                                         .registerWithEmailAndPasswordPressed());
                               },
-                              child: const Text('CREATE ACCOUNT'),
+                              child: const Text(
+                                'CREATE ACCOUNT',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           )
                         ],
                       ),
-                      GoogleSignInButton(
-                        borderRadius: 20,
-                        text: 'Log in with google',
-                        onPressed: () {},
-                        darkMode: true,
-                      ),
+                      // GoogleSignInButton(
+                      //   borderRadius: 20,
+                      //   text: 'Log in with google',
+                      //   onPressed: () {},
+                      //   darkMode: true,
+                      // ),
                       const Text(
                         'By Using Anime Search you are agreeing to our terms & Privacy Policy. And you confirm that you are at least 18 years or age.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 12,
+                          color: Colors.white,
                         ),
                       ),
                     ],
