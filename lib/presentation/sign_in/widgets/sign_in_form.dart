@@ -1,5 +1,7 @@
 import 'package:anime_search/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:anime_search/presentation/loader/loader.dart';
+import 'package:anime_search/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
@@ -31,7 +33,7 @@ class SignInForm extends StatelessWidget {
               duration: const Duration(seconds: 4),
             ).show(context);
           }, (r) {
-            // Navigate
+            ExtendedNavigator.of(context).pushReplacementNamed(Routes.homepage);
           }),
         );
       },

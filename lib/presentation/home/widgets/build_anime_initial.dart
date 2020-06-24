@@ -15,9 +15,8 @@ class BuildAnimeInitial extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: TextField(
-            onSubmitted: (value) => context
-                .bloc<AnimeBloc>()
-                .add(const AnimeEvent.getAnime('attack on titan')),
+            onSubmitted: (value) =>
+                context.bloc<AnimeBloc>().add(AnimeEvent.getAnime(value)),
             textInputAction: TextInputAction.search,
             style: const TextStyle(
               color: Colors.white,

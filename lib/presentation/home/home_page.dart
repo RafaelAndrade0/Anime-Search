@@ -3,7 +3,6 @@ import 'package:anime_search/injection.dart';
 import 'package:anime_search/presentation/home/widgets/build_anime_initial.dart';
 import 'package:anime_search/presentation/home/widgets/build_anime_loaded.dart';
 import 'package:anime_search/presentation/loader/loader.dart';
-import 'package:anime_search/presentation/widgets/gradient_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +14,23 @@ class Homepage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
         elevation: 0,
-        title: const Text('Anime Search'),
+        title: Row(
+          children: <Widget>[
+            Text(
+              'Anime',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 25,
+              ),
+            ),
+            const Text(
+              'Search',
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+              ),
+            )
+          ],
+        ),
       ),
       // appBar: GradientAppBar(
       //   title: 'Anime Search',
@@ -30,21 +45,21 @@ class Homepage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.deepPurple,
               ),
-              child: const Text('Drawer Header'),
+              child: const Text(
+                'Drawer Header',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                ),
+              ),
             ),
             ListTile(
               title: const Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
+              onTap: () {},
             ),
             ListTile(
               title: const Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
+              onTap: () {},
             ),
           ],
         ),

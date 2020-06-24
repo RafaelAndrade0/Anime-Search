@@ -22,7 +22,7 @@ class AppCore extends StatelessWidget {
           inputDecorationTheme: InputDecorationTheme(
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
-              hintStyle: TextStyle(color: Colors.white)
+              hintStyle: const TextStyle(color: Colors.white)
               // border: OutlineInputBorder(
               //   borderRadius: BorderRadius.circular(8),
               // ),

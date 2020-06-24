@@ -17,70 +17,72 @@ class _BuildAnimeLoadedState extends State<BuildAnimeLoaded> {
     return Column(
       children: <Widget>[
         BuildAnimeInitial(),
-        Expanded(
-          child: Stack(
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.only(top: 50),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                  ),
-                ),
-              ),
-              Flexible(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  children: <Widget>[
-                    for (var anime in widget.animeList.iter)
-                      Stack(
-                        alignment: Alignment.center,
-                        children: <Widget>[
-                          Container(
-                            height: 160,
-                            width: 160,
-                            decoration: BoxDecoration(
-                              color: Colors.purple,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
-                            ),
-                          ),
-                          Container(
-                            height: 160,
-                            width: 160,
-                            margin: const EdgeInsets.only(right: 12),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(anime.imageUrl),
-                                fit: BoxFit.cover,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 27.0,
-                                  // spreadRadius: 15, // soften the shadow
-                                  offset: const Offset(
-                                    0.0, // Move to right 10  horizontally
-                                    15.0, // Move to bottom 10 Vertically
-                                  ),
-                                )
-                              ],
-                              color: Colors.white,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
-                            ),
-                          )
-                        ],
-                      ),
-                  ],
+        buildBackground(),
+      ],
+    );
+  }
+
+  Stack buildAnimeItem(Anime anime) {
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        Container(
+          height: 170,
+          width: 170,
+          decoration: BoxDecoration(
+            color: Colors.purple,
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+          ),
+        ),
+        Container(
+          height: 170,
+          width: 170,
+          margin: const EdgeInsets.only(right: 12),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(anime.imageUrl),
+              fit: BoxFit.cover,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 27.0,
+                offset: const Offset(
+                  0.0,
+                  15.0,
                 ),
               )
             ],
+            color: Colors.white,
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
         )
       ],
+    );
+  }
+
+  Expanded buildBackground() {
+    return Expanded(
+      child: Stack(
+        children: <Widget>[
+          Container(
+            margin: const EdgeInsets.only(top: 50),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+              ),
+            ),
+          ),
+          GridView.count(
+            crossAxisCount: 2,
+            children: <Widget>[
+              for (var anime in widget.animeList.iter) buildAnimeItem(anime),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
