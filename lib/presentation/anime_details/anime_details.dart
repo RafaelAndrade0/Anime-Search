@@ -1,6 +1,17 @@
+import 'package:anime_search/domain/anime/anime.dart';
+import 'package:anime_search/presentation/anime_details/widgets/anime_details_header.dart';
 import 'package:flutter/material.dart';
 
-class AnimeDetails extends StatelessWidget {
+class AnimeDetails extends StatefulWidget {
+  final Anime anime;
+
+  const AnimeDetails({Key key, this.anime}) : super(key: key);
+
+  @override
+  _AnimeDetailsState createState() => _AnimeDetailsState();
+}
+
+class _AnimeDetailsState extends State<AnimeDetails> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -12,87 +23,9 @@ class AnimeDetails extends StatelessWidget {
         children: <Widget>[
           Container(
             height: size.height * 0.4,
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  height: size.height * 0.4 - 50,
-                  decoration: const BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(50)),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                          'https://viciados.net/wp-content/uploads/2020/05/Attack-on-Titan-temporada-3-Shingeki-no-Kyojin-temporada-3-1000x600.jpg'),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 10,
-                  right: 0,
-                  child: Container(
-                    height: 90,
-                    width: size.width * 0.8,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(50),
-                        topLeft: Radius.circular(50),
-                      ),
-                      // border: Border.all(width: 3),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: const Offset(0, 5),
-                          blurRadius: 50,
-                          color: Colors.white.withOpacity(0.6),
-                          // color: const Color(0xFF12153D).withOpacity(0.2),
-                        ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Icon(
-                                Icons.star,
-                                size: 30,
-                                color: Colors.yellow,
-                              ),
-                              Text('Airing')
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[
-                              Icon(
-                                Icons.favorite,
-                                size: 30,
-                                color: Colors.red,
-                              ),
-                              Text('Airing')
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[
-                              Icon(
-                                Icons.tv,
-                                size: 30,
-                                color: Colors.blueGrey,
-                              ),
-                              Text('Airing')
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const SafeArea(
-                    child: BackButton(
-                  color: Colors.white,
-                ))
-              ],
+            child: AnimeDetailsHeader(
+              size: size,
+              anime: widget.anime,
             ),
           ),
           Row(
@@ -142,7 +75,7 @@ class AnimeDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Shingeki no Kyojin',
+                  widget.anime.title,
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.deepPurple[200],
@@ -150,11 +83,11 @@ class AnimeDetails extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Attack Giant") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a fantasy world where humanity lives within territories surrounded by three enormous walls that protect them from gigantic man-eating humanoids referred to as Titans.',
+                  widget.anime.synopsis,
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 10),
+                  margin: EdgeInsets.only(top: 20),
                   child: Text(
                     'Characters',
                     style: TextStyle(

@@ -11,6 +11,7 @@ import 'package:anime_search/presentation/splash/splash_page.dart';
 import 'package:anime_search/presentation/sign_in/sign_in_page.dart';
 import 'package:anime_search/presentation/home/home_page.dart';
 import 'package:anime_search/presentation/anime_details/anime_details.dart';
+import 'package:anime_search/domain/anime/anime.dart';
 
 abstract class Routes {
   static const splashPage = '/';
@@ -35,6 +36,7 @@ class Router extends RouterBase {
 
   @override
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    final args = settings.arguments;
     switch (settings.name) {
       case Routes.splashPage:
         return MaterialPageRoute<dynamic>(
@@ -52,14 +54,31 @@ class Router extends RouterBase {
           settings: settings,
         );
       case Routes.animeDetails:
+        if (hasInvalidArgs<AnimeDetailsArguments>(args)) {
+          return misTypedArgsRoute<AnimeDetailsArguments>(args);
+        }
+        final typedArgs =
+            args as AnimeDetailsArguments ?? AnimeDetailsArguments();
         return MaterialPageRoute<dynamic>(
-          builder: (context) => AnimeDetails(),
+          builder: (context) =>
+              AnimeDetails(key: typedArgs.key, anime: typedArgs.anime),
           settings: settings,
         );
       default:
         return unknownRoutePage(settings.name);
     }
   }
+}
+
+// *************************************************************************
+// Arguments holder classes
+// **************************************************************************
+
+//AnimeDetails arguments holder class
+class AnimeDetailsArguments {
+  final Key key;
+  final Anime anime;
+  AnimeDetailsArguments({this.key, this.anime});
 }
 
 // *************************************************************************
@@ -73,5 +92,12 @@ extension RouterNavigationHelperMethods on ExtendedNavigatorState {
 
   Future pushHomepage() => pushNamed(Routes.homepage);
 
-  Future pushAnimeDetails() => pushNamed(Routes.animeDetails);
+  Future pushAnimeDetails({
+    Key key,
+    Anime anime,
+  }) =>
+      pushNamed(
+        Routes.animeDetails,
+        arguments: AnimeDetailsArguments(key: key, anime: anime),
+      );
 }

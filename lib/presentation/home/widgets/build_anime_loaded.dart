@@ -26,8 +26,10 @@ class _BuildAnimeLoadedState extends State<BuildAnimeLoaded> {
 
   Widget buildAnimeItem(Anime anime) {
     return GestureDetector(
-        onTap: () =>
-            ExtendedNavigator.of(context).pushNamed(Routes.animeDetails),
+        onTap: () => ExtendedNavigator.of(context).pushNamed(
+              Routes.animeDetails,
+              arguments: AnimeDetailsArguments(anime: anime),
+            ),
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
