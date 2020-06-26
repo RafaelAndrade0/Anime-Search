@@ -101,18 +101,18 @@ class _BuildAnimeLoadedState extends State<BuildAnimeLoaded> {
                     decoration: BoxDecoration(
                       image: const DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                          'https://i.pinimg.com/originals/d2/f9/4f/d2f94f1ab904ddb59ef12205d8a270c8.gif',
+                        image: AssetImage(
+                          'assets/images/no_results.gif',
                         ),
                       ),
                       borderRadius: const BorderRadius.all(
                         Radius.circular(15.0),
                       ),
-                      color: Colors.redAccent,
+                      color: Colors.white,
                     ),
                   ),
                   Text(
-                    'There was no results...try again!',
+                    'There were no results...try again!',
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.deepPurple[200],

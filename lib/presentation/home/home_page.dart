@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:anime_search/application/anime/anime_bloc.dart';
 import 'package:anime_search/injection.dart';
 import 'package:anime_search/presentation/home/widgets/build_anime_initial.dart';
@@ -60,50 +62,39 @@ class Homepage extends StatelessWidget {
           ],
         ),
       ),
-
-      // body: BlocConsumer<AnimeBloc, AnimeState>(
-      //   bloc: getIt<AnimeBloc>(),
-      //   listener: (context, state) {
-      //     state.maybeWhen(
-      //       animeError: Flushbar(
-      //         margin: const EdgeInsets.all(8),
-      //         borderRadius: 8,
-      //         message: 'Error! You are not connected to the internet!',
-      //         icon: Icon(
-      //           Icons.info_outline,
-      //           size: 28.0,
-      //           color: Colors.red[300],
-      //         ),
-      //         duration: const Duration(seconds: 4),
-      //       ).show(context),
-      //       orElse: () {},
-      //     );
-      //   },
-      //   builder: (context, state) {
-      //     return state.maybeMap(
-      //         animeLoading: (e) => Loader(),
-      //         animeLoaded: (e) => BuildAnimeLoaded(
-      //               animeList: e.animeList,
-      //             ),
-      //         // animeError: (e) => const Text('Anime Error'),
-      //         animeInitial: (e) => BuildAnimeInitial(),
-      //         orElse: (e) => BuildAnimeInitial());
-      //   },
-      // ),
-
       body: BlocProvider(
         create: (context) => getIt<AnimeBloc>(),
-        child: BlocBuilder<AnimeBloc, AnimeState>(builder: (context, state) {
-          return state.map(
-            animeLoading: (e) => Loader(),
-            animeLoaded: (e) => BuildAnimeLoaded(
-              animeList: e.animeList,
-            ),
-            animeError: (e) => const Text('Anime Error'),
-            animeInitial: (e) => BuildAnimeInitial(),
-            // orElse: (e) => BuildAnimeInitial(),
-          );
-        }),
+        child: BlocConsumer<AnimeBloc, AnimeState>(
+          listener: (context, state) {
+            state.maybeWhen(
+                animeError: () => Flushbar(
+                      title: "Error!",
+                      message: "Are you connected to the internet?",
+                      backgroundGradient: LinearGradient(
+                        colors: [Colors.deepPurple, Colors.purple],
+                      ),
+                      margin: EdgeInsets.all(8),
+                      borderRadius: 8,
+                      icon: Icon(
+                        Icons.info_outline,
+                        size: 28.0,
+                        color: Colors.red[300],
+                      ),
+                      duration: Duration(seconds: 6),
+                    )..show(context),
+                orElse: () => {});
+          },
+          builder: (context, state) {
+            return state.map(
+              animeLoading: (e) => Loader(),
+              animeLoaded: (e) => BuildAnimeLoaded(
+                animeList: e.animeList,
+              ),
+              animeError: (e) => BuildAnimeInitial(),
+              animeInitial: (e) => BuildAnimeInitial(),
+            );
+          },
+        ),
       ),
     );
   }
