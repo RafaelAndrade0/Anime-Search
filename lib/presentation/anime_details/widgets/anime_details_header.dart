@@ -58,33 +58,17 @@ class _AnimeDetailsHeaderState extends State<AnimeDetailsHeader> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Icon(
-                        Icons.tv,
-                        size: 30,
-                        color: Colors.deepPurple,
-                      ),
-                      Text(
-                        widget.anime.type,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                        ),
-                      )
-                    ],
-                  ),
-
+                  typeOfMedia(),
                   Column(
                     children: <Widget>[
                       Container(
-                        padding: const EdgeInsets.all(6),
+                        padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
                           color: Colors.deepPurple,
                           borderRadius: BorderRadius.circular(2),
                         ),
                         child: Text(
                           widget.anime.episodes.toString(),
-                          // widget.anime.score.toStringAsFixed(2),
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
@@ -100,21 +84,10 @@ class _AnimeDetailsHeaderState extends State<AnimeDetailsHeader> {
                       )
                     ],
                   ),
-
-                  // Column(
-                  //   children: <Widget>[
-                  //     Icon(
-                  //       Icons.tv,
-                  //       size: 30,
-                  //       color: Colors.black,
-                  //     ),
-                  //     Text('Airing')
-                  //   ],
-                  // ),
                   Column(
                     children: <Widget>[
                       Container(
-                        padding: const EdgeInsets.all(6),
+                        padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
                           color: const Color(0xFF51CF66),
                           borderRadius: BorderRadius.circular(2),
@@ -155,6 +128,32 @@ class _AnimeDetailsHeaderState extends State<AnimeDetailsHeader> {
             ),
           ),
         ),
+      ],
+    );
+  }
+
+  Widget typeOfMedia() {
+    IconData icon;
+    if (widget.anime.type == 'TV') {
+      icon = Icons.tv;
+    } else if (widget.anime.type == 'Movie' || widget.anime.type == 'OVA') {
+      icon = Icons.movie;
+    } else {
+      icon = Icons.star;
+    }
+    return Column(
+      children: <Widget>[
+        Icon(
+          icon,
+          size: 28,
+          color: Colors.deepPurple,
+        ),
+        Text(
+          widget.anime.type,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+        )
       ],
     );
   }

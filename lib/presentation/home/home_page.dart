@@ -3,6 +3,7 @@ import 'package:anime_search/injection.dart';
 import 'package:anime_search/presentation/home/widgets/build_anime_initial.dart';
 import 'package:anime_search/presentation/home/widgets/build_anime_loaded.dart';
 import 'package:anime_search/presentation/loader/loader.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,11 +33,6 @@ class Homepage extends StatelessWidget {
           ],
         ),
       ),
-      // appBar: GradientAppBar(
-      //   title: 'Anime Search',
-      //   gradientBegin: Colors.deepPurple,
-      //   gradientEnd: Colors.purple,
-      // ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -64,16 +60,49 @@ class Homepage extends StatelessWidget {
           ],
         ),
       ),
+
+      // body: BlocConsumer<AnimeBloc, AnimeState>(
+      //   bloc: getIt<AnimeBloc>(),
+      //   listener: (context, state) {
+      //     state.maybeWhen(
+      //       animeError: Flushbar(
+      //         margin: const EdgeInsets.all(8),
+      //         borderRadius: 8,
+      //         message: 'Error! You are not connected to the internet!',
+      //         icon: Icon(
+      //           Icons.info_outline,
+      //           size: 28.0,
+      //           color: Colors.red[300],
+      //         ),
+      //         duration: const Duration(seconds: 4),
+      //       ).show(context),
+      //       orElse: () {},
+      //     );
+      //   },
+      //   builder: (context, state) {
+      //     return state.maybeMap(
+      //         animeLoading: (e) => Loader(),
+      //         animeLoaded: (e) => BuildAnimeLoaded(
+      //               animeList: e.animeList,
+      //             ),
+      //         // animeError: (e) => const Text('Anime Error'),
+      //         animeInitial: (e) => BuildAnimeInitial(),
+      //         orElse: (e) => BuildAnimeInitial());
+      //   },
+      // ),
+
       body: BlocProvider(
         create: (context) => getIt<AnimeBloc>(),
         child: BlocBuilder<AnimeBloc, AnimeState>(builder: (context, state) {
           return state.map(
-              animeLoading: (e) => Loader(),
-              animeLoaded: (e) => BuildAnimeLoaded(
-                    animeList: e.animeList,
-                  ),
-              animeError: (e) => const Text('Anime Error'),
-              animeInitial: (e) => BuildAnimeInitial());
+            animeLoading: (e) => Loader(),
+            animeLoaded: (e) => BuildAnimeLoaded(
+              animeList: e.animeList,
+            ),
+            animeError: (e) => const Text('Anime Error'),
+            animeInitial: (e) => BuildAnimeInitial(),
+            // orElse: (e) => BuildAnimeInitial(),
+          );
         }),
       ),
     );

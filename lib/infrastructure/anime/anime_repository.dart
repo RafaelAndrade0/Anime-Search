@@ -1,10 +1,9 @@
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:anime_search/domain/anime/anime.dart';
 import 'package:anime_search/domain/anime/anime_failure.dart';
 import 'package:anime_search/domain/anime/i_anime_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:http/http.dart' as http;
@@ -23,7 +22,7 @@ class AnimeRepository implements IAnimeRepository {
           KtList.from(decodedJson).map((data) => Anime.fromJson(data));
 
       return right(animeList);
-    } on PlatformException catch (_) {
+    } on SocketException catch (_) {
       return left(const AnimeFailure.unexpected());
     }
   }

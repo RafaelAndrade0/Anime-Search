@@ -82,12 +82,53 @@ class _BuildAnimeLoadedState extends State<BuildAnimeLoaded> {
               ),
             ),
           ),
-          GridView.count(
-            crossAxisCount: 2,
-            children: <Widget>[
-              for (var anime in widget.animeList.iter) buildAnimeItem(anime),
-            ],
-          )
+          if (widget.animeList.isEmpty())
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Oooops!',
+                    style: TextStyle(
+                      fontSize: 35,
+                      color: Colors.deepPurple[200],
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  Container(
+                    width: 250.0,
+                    height: 250.0,
+                    decoration: BoxDecoration(
+                      image: const DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                          'https://i.pinimg.com/originals/d2/f9/4f/d2f94f1ab904ddb59ef12205d8a270c8.gif',
+                        ),
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(15.0),
+                      ),
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                  Text(
+                    'There was no results...try again!',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.deepPurple[200],
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                ],
+              ),
+            )
+          else
+            GridView.count(
+              crossAxisCount: 2,
+              children: <Widget>[
+                for (var anime in widget.animeList.iter) buildAnimeItem(anime),
+              ],
+            )
         ],
       ),
     );
