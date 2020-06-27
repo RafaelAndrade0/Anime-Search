@@ -242,6 +242,10 @@ class _$AuthStateTearOff {
     return const Initial();
   }
 
+  LoadingAuth loadingAuth() {
+    return const LoadingAuth();
+  }
+
   Authenticated authenticated() {
     return const Authenticated();
   }
@@ -258,12 +262,14 @@ mixin _$AuthState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
+    @required Result loadingAuth(),
     @required Result authenticated(),
     @required Result unauthenticated(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
+    Result loadingAuth(),
     Result authenticated(),
     Result unauthenticated(),
     @required Result orElse(),
@@ -271,12 +277,14 @@ mixin _$AuthState {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(Initial value),
+    @required Result loadingAuth(LoadingAuth value),
     @required Result authenticated(Authenticated value),
     @required Result unauthenticated(Unauthenticated value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(Initial value),
+    Result loadingAuth(LoadingAuth value),
     Result authenticated(Authenticated value),
     Result unauthenticated(Unauthenticated value),
     @required Result orElse(),
@@ -330,10 +338,12 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
+    @required Result loadingAuth(),
     @required Result authenticated(),
     @required Result unauthenticated(),
   }) {
     assert(initial != null);
+    assert(loadingAuth != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
     return initial();
@@ -343,6 +353,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
+    Result loadingAuth(),
     Result authenticated(),
     Result unauthenticated(),
     @required Result orElse(),
@@ -358,10 +369,12 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(Initial value),
+    @required Result loadingAuth(LoadingAuth value),
     @required Result authenticated(Authenticated value),
     @required Result unauthenticated(Unauthenticated value),
   }) {
     assert(initial != null);
+    assert(loadingAuth != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
     return initial(this);
@@ -371,6 +384,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(Initial value),
+    Result loadingAuth(LoadingAuth value),
     Result authenticated(Authenticated value),
     Result unauthenticated(Unauthenticated value),
     @required Result orElse(),
@@ -385,6 +399,105 @@ class _$Initial implements Initial {
 
 abstract class Initial implements AuthState {
   const factory Initial() = _$Initial;
+}
+
+abstract class $LoadingAuthCopyWith<$Res> {
+  factory $LoadingAuthCopyWith(
+          LoadingAuth value, $Res Function(LoadingAuth) then) =
+      _$LoadingAuthCopyWithImpl<$Res>;
+}
+
+class _$LoadingAuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements $LoadingAuthCopyWith<$Res> {
+  _$LoadingAuthCopyWithImpl(
+      LoadingAuth _value, $Res Function(LoadingAuth) _then)
+      : super(_value, (v) => _then(v as LoadingAuth));
+
+  @override
+  LoadingAuth get _value => super._value as LoadingAuth;
+}
+
+class _$LoadingAuth implements LoadingAuth {
+  const _$LoadingAuth();
+
+  @override
+  String toString() {
+    return 'AuthState.loadingAuth()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoadingAuth);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initial(),
+    @required Result loadingAuth(),
+    @required Result authenticated(),
+    @required Result unauthenticated(),
+  }) {
+    assert(initial != null);
+    assert(loadingAuth != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    return loadingAuth();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initial(),
+    Result loadingAuth(),
+    Result authenticated(),
+    Result unauthenticated(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loadingAuth != null) {
+      return loadingAuth();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initial(Initial value),
+    @required Result loadingAuth(LoadingAuth value),
+    @required Result authenticated(Authenticated value),
+    @required Result unauthenticated(Unauthenticated value),
+  }) {
+    assert(initial != null);
+    assert(loadingAuth != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    return loadingAuth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initial(Initial value),
+    Result loadingAuth(LoadingAuth value),
+    Result authenticated(Authenticated value),
+    Result unauthenticated(Unauthenticated value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loadingAuth != null) {
+      return loadingAuth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadingAuth implements AuthState {
+  const factory LoadingAuth() = _$LoadingAuth;
 }
 
 abstract class $AuthenticatedCopyWith<$Res> {
@@ -423,10 +536,12 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
+    @required Result loadingAuth(),
     @required Result authenticated(),
     @required Result unauthenticated(),
   }) {
     assert(initial != null);
+    assert(loadingAuth != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
     return authenticated();
@@ -436,6 +551,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
+    Result loadingAuth(),
     Result authenticated(),
     Result unauthenticated(),
     @required Result orElse(),
@@ -451,10 +567,12 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(Initial value),
+    @required Result loadingAuth(LoadingAuth value),
     @required Result authenticated(Authenticated value),
     @required Result unauthenticated(Unauthenticated value),
   }) {
     assert(initial != null);
+    assert(loadingAuth != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
     return authenticated(this);
@@ -464,6 +582,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(Initial value),
+    Result loadingAuth(LoadingAuth value),
     Result authenticated(Authenticated value),
     Result unauthenticated(Unauthenticated value),
     @required Result orElse(),
@@ -516,10 +635,12 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
+    @required Result loadingAuth(),
     @required Result authenticated(),
     @required Result unauthenticated(),
   }) {
     assert(initial != null);
+    assert(loadingAuth != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
     return unauthenticated();
@@ -529,6 +650,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
+    Result loadingAuth(),
     Result authenticated(),
     Result unauthenticated(),
     @required Result orElse(),
@@ -544,10 +666,12 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(Initial value),
+    @required Result loadingAuth(LoadingAuth value),
     @required Result authenticated(Authenticated value),
     @required Result unauthenticated(Unauthenticated value),
   }) {
     assert(initial != null);
+    assert(loadingAuth != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
     return unauthenticated(this);
@@ -557,6 +681,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(Initial value),
+    Result loadingAuth(LoadingAuth value),
     Result authenticated(Authenticated value),
     Result unauthenticated(Unauthenticated value),
     @required Result orElse(),
