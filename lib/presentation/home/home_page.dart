@@ -26,6 +26,7 @@ class Homepage extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
+          drawerScrimColor: Colors.deepPurple[700].withOpacity(0.6),
           backgroundColor: Colors.deepPurple,
           appBar: AppBar(
             backgroundColor: Colors.deepPurple,
@@ -49,32 +50,66 @@ class Homepage extends StatelessWidget {
             ),
           ),
           drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurple,
-                  ),
-                  child: const Text(
-                    'Drawer Header',
+            // elevation: 0.5,
+            child: Container(
+              padding: EdgeInsets.all(30),
+              color: Colors.deepPurple,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text(
+                    'HOME',
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
+                      fontSize: 30,
+                      color: Colors.deepPurple[200],
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
-                ),
-                ListTile(
-                  title: const Text('Item 1'),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: const Text('SignOut'),
-                  onTap: () {
-                    context.bloc<AuthBloc>()..add(AuthEvent.signedOut());
-                  },
-                ),
-              ],
+                  Text(
+                    'PROFILE',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.deepPurple[200],
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  Text(
+                    'FAVORITES',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.deepPurple[200],
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () => context.bloc<AuthBloc>()
+                      ..add(const AuthEvent.signedOut()),
+                    child: Text(
+                      'LOGOUT',
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.deepPurple[200],
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              // child: ListView(
+              //   padding: EdgeInsets.zero,
+              //   children: <Widget>[
+              //     ListTile(
+              //       title: const Text('Item 1'),
+              //       onTap: () {},
+              //     ),
+              //     ListTile(
+              //       title: const Text('SignOut'),
+              //       onTap: () {
+              //         context.bloc<AuthBloc>()..add(AuthEvent.signedOut());
+              //       },
+              //     ),
+              //   ],
+              // ),
             ),
           ),
           body: BlocProvider(
