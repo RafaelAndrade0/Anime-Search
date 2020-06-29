@@ -50,8 +50,8 @@ class SignInForm extends StatelessWidget {
                       Container(
                         height: 320,
                         child: Image.asset(
-                          'assets/images/logo.png',
-                          fit: BoxFit.fitHeight,
+                          'assets/images/logo3.png',
+                          fit: BoxFit.fitWidth,
                         ),
                       ),
                       Container(
